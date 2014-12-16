@@ -77,7 +77,7 @@ void loop(){
 void checkcode(){
   int yourCode1, yourCode2, yourCode3, yourCode4;
   //Change your codes:
-  yourCode1 = 1;
+  yourCode1 = 0;
   yourCode2 = 0;
   yourCode3 = 0;
   yourCode4 = 0;
