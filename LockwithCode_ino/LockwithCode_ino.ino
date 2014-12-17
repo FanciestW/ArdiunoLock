@@ -14,6 +14,7 @@ static int code1;
 static int code2;
 static int code3;
 static int code4;
+static int userdelay = 200;
 
 void setup(){
   Serial.begin(9600);
@@ -34,40 +35,58 @@ void setup(){
 void loop(){
   if(digitalRead(btnOpen) == LOW){
     checkcode();
+    delay(userdelay);
   }
   else if(digitalRead(btnClose) == LOW){
     closed();
+    delay(userdelay);
   }
   else if(digitalRead(code1Pin) == LOW){
-    if(code1 <= 3){
+    if(code1 <= 8){
       code1++;
+      Serial.println(code1);
+      delay(userdelay);
     }
     else{
       code1 = 0;
+      Serial.println(code1);
+      delay(userdelay);
     }
   }
   else if(digitalRead(code2Pin) == LOW){
-    if(code2 <= 3){
+    if(code2 <= 8){
       code2++;
+      Serial.println(code2);
+      delay(userdelay);
     }
     else{
       code2 = 0;
+      Serial.println(code2);
+      delay(userdelay);
     }
   }
   else if(digitalRead(code3Pin) == LOW){
-    if(code3 <= 3){
+    if(code3 <= 8){
       code3++;
+      Serial.println(code3);
+      delay(userdelay);
     }
     else{
       code3 = 0;
+      Serial.println(code3);
+      delay(userdelay);
     }
   }
   else if(digitalRead(code4Pin) == LOW){
-    if(code4 <= 3){
+    if(code4 <= 8){
       code4++;
+      Serial.println(code4);
+      delay(userdelay);
     }
     else{
       code4 = 0;
+      Serial.println(code4);
+      delay(userdelay);
     }
   }
   else{
@@ -77,39 +96,48 @@ void loop(){
 void checkcode(){
   int yourCode1, yourCode2, yourCode3, yourCode4;
   //Change your codes:
-  yourCode1 = 0;
-  yourCode2 = 0;
-  yourCode3 = 0;
-  yourCode4 = 0;
+  yourCode1 = 1;
+  yourCode2 = 2;
+  yourCode3 = 3;
+  yourCode4 = 4;
   if(code1 == yourCode1){
+    Serial.println("Code 1 Passed");
     if(code2 == yourCode2){
+      Serial.println("Code 2 Passed");
       if(code3 == yourCode3){
-        if(code3 == yourCode4){
+        Serial.println("Code 3 Passed");
+        if(code4 == yourCode4){
+          Serial.println("Code 4 Passed");
           opened();
+          delay(userdelay);
         }
         else{
+          Serial.println("Code4 Not Correct");
         }
       }
       else{
+        Serial.println("Code3 Not Correct");
       }
     }
     else{
+      Serial.println("Code2 Not Correct");
     }
   }
   else{
+    Serial.println("Code1 Not Correct");
   }
 }
 
 void opened(){
   servo.write(angleOpen);
+  Serial.println("Access Granted");
 }
 
 void closed(){
   servo.write(angleClose);
+  Serial.println("Code Reseted");
   code1 = 0;
   code2 = 0;
   code3 = 0;
   code4 = 0;
 }
-  
-  
