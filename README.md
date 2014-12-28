@@ -1,4 +1,4 @@
-ArdiunoLock
+ArdiunoDigitalLock
 ===========
 <h3>Open Button : DigitalPin 10</h3>
 <h3>Close Button : DigitalPin 9</h3>
